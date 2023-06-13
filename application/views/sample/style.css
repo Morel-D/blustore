@@ -11,6 +11,7 @@
 }
 
 #card,
-#tableHead {
+#tableHead,
+.add {
 	background-color: #113b7f;
 }

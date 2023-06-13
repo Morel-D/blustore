@@ -9,3 +9,21 @@ td,
 th {
 	vertical-align: middle !important;
 }
+
+.left-content {
+	border-right: 1px solid rgb(233, 233, 233);
+}
+
+.extents {
+	height: 400px;
+}
+
+#dbi {
+	font-size: 40px;
+}
+
+#card,
+#tableHead,
+.add {
+	background-color: #113b7f;
+}

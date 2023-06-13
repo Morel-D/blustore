@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap");
+body {
+	font-family: "Lexend", sans-serif;
+	font-weight: 400;
+}
+
+.left-content {
+	border-right: 1px solid rgb(233, 233, 233);
+}
+
+.extents {
+	height: 400px;
+}
+
+#dbi {
+	font-size: 40px;
+}
+
+#card,
+#tableHead {
+	background-color: #113b7f;
+}
