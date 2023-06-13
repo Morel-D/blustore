@@ -5,3 +5,12 @@
 .extents {
 	height: 400px;
 }
+
+#dbi {
+	font-size: 40px;
+}
+
+#card,
+#tableHead {
+	background-color: #113b7f;
+}
