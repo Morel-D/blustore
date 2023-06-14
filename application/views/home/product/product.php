@@ -45,6 +45,25 @@
 			<div class="col">
 				<div class="row">
 					<div class="col mb-3">
+						<!-- fashbox -->
+						<!-- <div class="alert alert-danger alert-dismissible fade show col-7" role="alert">
+							<i class="bi bi-exclamation-diamond"></i> Product Deleted
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div> -->
+
+						<?php if ($this->session->flashdata('status')) {  ?>
+							<div class="alert alert-success alert-dismissible fade show col-7" role="alert">
+								<i class="bi bi-check-circle"></i> New Product added
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
+						<?php } ?>
+
+						<!--	<div class="alert alert-warning alert-dismissible fade show col-7" role="alert">
+							<i class="bi bi-pencil"></i> Product updated
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div> -->
+						<!-- fashbox -->
+
 						<h3 class="">Product</h3>
 					</div>
 					<div class="col text-end">
@@ -72,31 +91,32 @@
 									<h3 class="modal-title fs-2" id="exampleModalLabel">Add a product</h3>
 									<button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
-								<div class="modal-body">
-									<form action="">
+								<form action="<?php echo base_url("store") ?>" method="POST">
+									<div class="modal-body">
 										<div class="row py-3">
 											<div class="col">
-												<input type="text" placeholder="Enter product name" class="form-control">
+												<input type="text" placeholder="Enter product name" class="form-control" name="name">
 											</div>
 											<div class="col col-2">
-												<input type="number" placeholder="Quantity" class="form-control">
+												<input type="number" placeholder="Quantity" class="form-control" name="qty">
 											</div>
 										</div>
 
 										<div class="row py-3">
 											<div class="col">
-												<input type="text" placeholder="Enter the amount one product" class="form-control">
+												<input type="text" placeholder="Enter the amount one product" class="form-control" name="price">
 											</div>
 											<div class="col">
-												<input type="date" placeholder="DD/MM/YY" class="form-control">
+												<input type="date" placeholder="DD/MM/YY" class="form-control" name="deliver">
 											</div>
 										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button type="button" class="btn text-white add">Save changes</button>
-								</div>
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										<button type="submit" class="btn text-white add">Save changes</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -119,9 +139,12 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php
+						$num = 1;
+						?>
 						<?php foreach ($produts as $product) {  ?>
 							<tr>
-								<th scope="row">1</th>
+								<th scope="row"><?php echo $num++; ?></th>
 								<td><?php echo $product->name ?></td>
 								<td><?php echo $product->uid ?></td>
 								<td><?php echo $product->qty ?></td>
