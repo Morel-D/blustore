@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['product'] = 'productController';
 $route['addProduct'] = 'productController/store';
 $route['deleteproduct/(:any)'] = 'productController/delete/$1';
+$route['updateProduct/(:any)'] = 'productController/update/$1';

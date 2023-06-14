@@ -62,14 +62,13 @@
 								<i class="bi bi-pencil"></i> Fill in all the informations
 								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 							</div>
+						<?php } elseif ($this->session->flashdata('update')) { ?>
+
+							<div class="alert alert-warning alert-dismissible fade show col-7" role="alert">
+								<i class="bi bi-pencil"></i> Product updated
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
 						<?php } ?>
-
-
-
-						<!--	<div class="alert alert-warning alert-dismissible fade show col-7" role="alert">
-							<i class="bi bi-pencil"></i> Product updated
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div> -->
 						<!-- fashbox -->
 
 						<h3 class="">Product</h3>
@@ -103,19 +102,23 @@
 									<div class="modal-body">
 										<div class="row py-3">
 											<div class="col">
+												<label class="">(Ex: Product Mark - product functionality)</label>
 												<input type="text" placeholder="Enter product name" class="form-control" name="name">
 											</div>
-											<div class="col col-2">
+											<div class="col col-4">
+												<label class="">Quantity of the product</label>
 												<input type="number" placeholder="Quantity" class="form-control" name="qty">
 											</div>
 										</div>
 
 										<div class="row py-3">
 											<div class="col">
+												<label class="">Amount of one product</label>
 												<input type="text" placeholder="Enter the amount one product" class="form-control" name="price">
 											</div>
 											<div class="col">
-												<input type="date" placeholder="DD/MM/YY" class="form-control" name="deliver">
+												<label class="">Enter the date of the product delivery</label>
+												<input type="date" class="form-control" name="deliver">
 											</div>
 										</div>
 
@@ -178,7 +181,8 @@
 								<td><?php echo $product->deliver ?></td>
 								<td>
 									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal<?php echo $product->id; ?>"><i class="bi bi-trash text-danger"></i></a>
-									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModals<?php echo $product->id; ?>"><i class="bi bi-eye text-warning"></i></a>
+									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModals<?php echo $product->id; ?>"><i class="bi bi-eye text-primary"></i></a>
+									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModale<?php echo $product->id; ?>"><i class="bi bi-pencil text-warning"></i></a>
 								</td>
 
 								<!-- Delete Modal -->
@@ -251,6 +255,58 @@
 									</div>
 								</div>
 								<!-- Ends here -->
+
+
+
+								<!-- update Modal -->
+								<div class="modal fade" id="exampleModale<?php echo $product->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Update this record</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<form action="<?php echo base_url('updateProduct/' . $product->id) ?>" method="POST">
+												<div class="modal-body">
+													<div class="row py-3">
+														<div class="col">
+															<label class="">(Ex: Product Mark - product functionality)</label>
+															<input type="text" placeholder="Enter product name" class="form-control" name="name" value="<?php echo $product->name ?>">
+														</div>
+														<div class="col col-4">
+															<label class="">Quantity of the product</label>
+															<input type="number" placeholder="Quantity" class="form-control" name="qty" value="<?php echo $product->qty ?>">
+														</div>
+													</div>
+
+													<div class="row py-3">
+														<div class="col">
+															<label class="">Amount of one product</label>
+															<input type="text" placeholder="Enter the amount one product" class="form-control" name="price" value="<?php echo $product->price ?>">
+														</div>
+														<div class="col">
+															<label class="">Enter the date of the product delivery</label>
+															<input type="date" placeholder="Product delivery date" class="form-control" name="deliver" name="price" value="<?php echo $product->deliver ?>">
+														</div>
+													</div>
+
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+													<button type="submit" class="btn text-white add">Update changes</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!-- Ends here -->
+
+
+
+
+
 							<?php } ?>
 							</tr>
 					</tbody>

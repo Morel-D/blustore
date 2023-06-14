@@ -53,4 +53,33 @@ class ProductController extends CI_Controller
         $this->session->set_flashdata('delete', 'product has been deleted');
         redirect(base_url('product'));
     }
+
+
+    public function update($id)
+    {
+
+        $Name = $this->input->post('name');
+        $Qty = $this->input->post('qty');
+        $Price = $this->input->post('price');
+        $Dev = $this->input->post('deliver');
+
+        if ($Name == '' || $Qty == '' || $Price == '' || $Dev == '') {
+            $this->session->set_flashdata('empty', 'Fill in all the records');
+            redirect(base_url('product'));
+        } else {
+
+            $data =
+                [
+                    'name' => $this->input->post('name'),
+                    'qty' => $this->input->post('qty'),
+                    'price' => $this->input->post('price'),
+                    'deliver' => $this->input->post('deliver')
+                ];
+
+            $this->load->model('productModel');
+            $this->productModel->updateProduct($id, $data);
+            $this->session->set_flashdata('update', 'Record has updated');
+            redirect(base_url('product'));
+        }
+    }
 }
