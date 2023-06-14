@@ -178,10 +178,10 @@
 								<td><?php echo $product->deliver ?></td>
 								<td>
 									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal<?php echo $product->id; ?>"><i class="bi bi-trash text-danger"></i></a>
-									<a href="" class="btn"><i class="bi bi-eye text-warning"></i></a>
+									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModals<?php echo $product->id; ?>"><i class="bi bi-eye text-warning"></i></a>
 								</td>
 
-								<!-- Modal -->
+								<!-- Delete Modal -->
 								<div class="modal fade" id="exampleModal<?php echo $product->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -199,6 +199,53 @@
 												<a class="btn btn-danger" href="<?php echo base_url('deleteproduct/' . $product->id) ?>">
 													Delete Record
 												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Ends here -->
+
+
+
+								<!-- Edit Modal -->
+								<div class="modal fade" id="exampleModals<?php echo $product->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">View This Record</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<h4> <?php echo $product->name; ?></h4>
+												<p>Matricule : <i class="text-secondary"><?php echo $product->uid; ?></i></p>
+												<label>Quantity : <?php if ($product->qty == 0) { ?>
+														<span class="badge text-bg-danger">Out of stock</span>
+													<?php } else {
+																		echo $product->qty;
+																	}  ?></label>
+												<hr />
+												<div>
+													<label>Price per product <b><?php echo $product->price ?> CFA</b></label><br />
+													<label>Total amount <b> <?php
+
+																			$quantity = $product->qty;
+																			$price = $product->price;
+
+																			$total_price = $quantity * $price;
+
+																			echo $total_price
+
+																			?>
+															CFA</b></label>
+													<hr />
+													<div class="">
+														<label>Adding date : <i class="text-secondary"><?php echo $product->deliver ?></i></label><br>
+														<label>Modification date : <i class="text-secondary"><?php echo $product->time ?></i></label>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
