@@ -44,4 +44,13 @@ class ProductController extends CI_Controller
             redirect(base_url('product'));
         }
     }
+
+
+    public function delete($id)
+    {
+        $this->load->model('productModel');
+        $this->productModel->deleteProduct($id);
+        $this->session->set_flashdata('delete', 'product has been deleted');
+        redirect(base_url('product'));
+    }
 }

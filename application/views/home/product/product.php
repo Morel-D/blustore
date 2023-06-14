@@ -46,12 +46,13 @@
 				<div class="row">
 					<div class="col mb-3">
 						<!-- fashbox -->
-						<!-- <div class="alert alert-danger alert-dismissible fade show col-7" role="alert">
-							<i class="bi bi-exclamation-diamond"></i> Product Deleted
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div> -->
+						<?php if ($this->session->flashdata('delete')) { ?>
+							<div class="alert alert-danger alert-dismissible fade show col-7" role="alert">
+								<i class="bi bi-exclamation-diamond"></i> Product Deleted
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
 
-						<?php if ($this->session->flashdata('status')) {  ?>
+						<?php } elseif ($this->session->flashdata('status')) {  ?>
 							<div class="alert alert-success alert-dismissible fade show col-7" role="alert">
 								<i class="bi bi-check-circle"></i> New Product added
 								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -98,7 +99,7 @@
 									<h3 class="modal-title fs-2" id="exampleModalLabel">Add a product</h3>
 									<button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
-								<form action="<?php echo base_url("store") ?>" method="POST">
+								<form action="<?php echo base_url("addProduct") ?>" method="POST">
 									<div class="modal-body">
 										<div class="row py-3">
 											<div class="col">
@@ -154,7 +155,12 @@
 								<th scope="row"><?php echo $num++; ?></th>
 								<td><?php echo $product->name ?></td>
 								<td><?php echo $product->uid ?></td>
-								<td><?php echo $product->qty ?></td>
+								<td><?php if ($product->qty == 0) { ?>
+										<span class="badge text-bg-danger">Out of stock</span>
+									<?php } else {
+										echo $product->qty;
+									}  ?>
+								</td>
 								<td><?php echo $product->price ?> CFA</td>
 								<td>
 									<?php
@@ -171,9 +177,33 @@
 								</td>
 								<td><?php echo $product->deliver ?></td>
 								<td>
-									<a href="" class="btn"><i class="bi bi-trash text-danger"></i></a>
+									<a type="button" class="btn btn-sm" data-toggle="modal" data-target="#exampleModal<?php echo $product->id; ?>"><i class="bi bi-trash text-danger"></i></a>
 									<a href="" class="btn"><i class="bi bi-eye text-warning"></i></a>
 								</td>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModal<?php echo $product->id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Delete this record</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												Are you sure you want to delete this record of <b><?php echo $product->name; ?></b> ?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<a class="btn btn-danger" href="<?php echo base_url('deleteproduct/' . $product->id) ?>">
+													Delete Record
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Ends here -->
 							<?php } ?>
 							</tr>
 					</tbody>

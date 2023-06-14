@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['product'] = 'productController';
-$route['store'] = 'productController/store';
+$route['addProduct'] = 'productController/store';
+$route['deleteproduct/(:any)'] = 'productController/delete/$1';
