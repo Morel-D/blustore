@@ -56,7 +56,14 @@
 								<i class="bi bi-check-circle"></i> New Product added
 								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 							</div>
+						<?php } elseif ($this->session->flashdata('empty')) {  ?>
+							<div class="alert alert-danger alert-dismissible fade show col-7" role="alert">
+								<i class="bi bi-pencil"></i> Fill in all the informations
+								<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							</div>
 						<?php } ?>
+
+
 
 						<!--	<div class="alert alert-warning alert-dismissible fade show col-7" role="alert">
 							<i class="bi bi-pencil"></i> Product updated

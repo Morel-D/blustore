@@ -18,18 +18,30 @@ class ProductController extends CI_Controller
         $letters = "PRD";
         $matricule = substr(uniqid(), 0, 10);
 
-        $data =
-            [
-                'uid' => $letters . $matricule,
-                'name' => $this->input->post('name'),
-                'qty' => $this->input->post('qty'),
-                'price' => $this->input->post('price'),
-                'deliver' => $this->input->post('deliver')
-            ];
 
-        $this->load->model('productModel');
-        $this->productModel->insertProduct($data);
-        $this->session->set_flashdata('status', 'Record has been added');
-        redirect(base_url('product'));
+        $Name = $this->input->post('name');
+        $Qty = $this->input->post('qty');
+        $Price = $this->input->post('price');
+        $Dev = $this->input->post('deliver');
+
+        if ($Name == '' || $Qty == '' || $Price == '' || $Dev == '') {
+            $this->session->set_flashdata('empty', 'Fill in all the records');
+            redirect(base_url('product'));
+        } else {
+
+            $data =
+                [
+                    'uid' => $letters . $matricule,
+                    'name' => $this->input->post('name'),
+                    'qty' => $this->input->post('qty'),
+                    'price' => $this->input->post('price'),
+                    'deliver' => $this->input->post('deliver')
+                ];
+
+            $this->load->model('productModel');
+            $this->productModel->insertProduct($data);
+            $this->session->set_flashdata('status', 'Record has been added');
+            redirect(base_url('product'));
+        }
     }
 }
