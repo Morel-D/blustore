@@ -51,49 +51,101 @@
 						<a href="" class="btn text-secondary d-flex justify-content-end"><i class="bi bi-box-arrow-right"></i>Logout</a>
 					</div>
 				</div>
+				<br>
 				<hr />
 				<br />
+				<div class="row">
+					<div class="col col-2">
+						<div class="card">
+							<label class=" mt-2 mx-2">Total Amount : <b>11000CFA</b></label>
+						</div>
+					</div>
+					<div class="col">
+						<button class="btn text-white add" data-bs-toggle="modal" data-bs-target="#exampleModal">Add a product</button>
+					</div>
 
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3 class="modal-title fs-2" id="exampleModalLabel">Add a product</h3>
+									<button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form action="">
+										<div class="row py-3">
+											<div class="col">
+												<input type="text" placeholder="Enter product name" class="form-control">
+											</div>
+											<div class="col col-2">
+												<input type="number" placeholder="Quantity" class="form-control">
+											</div>
+										</div>
+
+										<div class="row py-3">
+											<div class="col">
+												<input type="text" placeholder="Enter the amount one product" class="form-control">
+											</div>
+											<div class="col">
+												<input type="date" placeholder="DD/MM/YY" class="form-control">
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+									<button type="button" class="btn text-white add">Save changes</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Modal end -->
+
+					<div class="col col-4"><input type="text" class="form-control" placeholder="Search a product"></div>
+				</div>
+				<br />
 				<table class="table table-hover">
 					<thead class="text-white" id="tableHead">
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Product Name</th>
-							<th scope="col">Quantity sold</th>
-							<th scope="col">Number of orders</th>
-							<th scope="col">Total Amount</th>
+							<th scope="col">product Matricule</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Amount per product</th>
+							<th scope="col">Products Amount</th>
+							<th scope="col">Delivered Date</th>
+							<th scope="col">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>Maybelline- Créme</td>
-							<td>23</td>
-							<td>5</td>
-							<td>34500 CFA</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>Nars- Parfume</td>
-							<td>13</td>
-							<td>7</td>
-							<td>20000 CFA</td>
-						</tr>
+						<?php foreach ($produts as $product) {  ?>
+							<tr>
+								<th scope="row">1</th>
+								<td><?php echo $product->name ?></td>
+								<td><?php echo $product->uid ?></td>
+								<td><?php echo $product->qty ?></td>
+								<td><?php echo $product->price ?> CFA</td>
+								<td>
+									<?php
 
-						<tr>
-							<th scope="row">3</th>
-							<td>Nars- Parfume</td>
-							<td>13</td>
-							<td>2</td>
-							<td>20000 CFA</td>
-						</tr>
-						<tr>
-							<th scope="row">4</th>
-							<td>Dior- T-shirt</td>
-							<td>5</td>
-							<td>2</td>
-							<td>15000 CFA</td>
-						</tr>
+									$quantity = $product->qty;
+									$price = $product->price;
+
+									$total_price = $quantity * $price;
+
+									echo $total_price
+
+									?>
+									CFA
+								</td>
+								<td><?php echo $product->deliver ?></td>
+								<td>
+									<a href="" class="btn"><i class="bi bi-trash text-danger"></i></a>
+									<a href="" class="btn"><i class="bi bi-eye text-warning"></i></a>
+								</td>
+							<?php } ?>
+							</tr>
 					</tbody>
 				</table>
 			</div>

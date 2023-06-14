@@ -5,8 +5,11 @@ class ProductController extends CI_Controller
 {
     public function index()
     {
+        $this->load->model('productModel');
+
         $this->load->view('themes/header');
-		$this->load->view('home/product/product');
-		$this->load->view('themes/footer');
+        $data['produts'] = $this->productModel->getProduct();
+        $this->load->view('home/product/product', $data);
+        $this->load->view('themes/footer');
     }
-} 
+}
