@@ -57,3 +57,8 @@ $route['product'] = 'productController';
 $route['addProduct'] = 'productController/store';
 $route['deleteproduct/(:any)'] = 'productController/delete/$1';
 $route['updateProduct/(:any)'] = 'productController/update/$1';
+
+$route['purchase'] = 'purchaseController';
+
+
+$route['client'] = 'clientController';

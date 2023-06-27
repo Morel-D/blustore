@@ -23,12 +23,12 @@
 						</li>
 						<li class="list-group-item border-0">
 							<a class="btn text-secondary">
-								<i class="bi bi-bag"></i> Purchase
+								<i class="bi bi-person"></i> Client
 							</a>
 						</li>
 						<li class="list-group-item border-0">
 							<a class="btn text-secondary">
-								<i class="bi bi-receipt"></i> Transactions
+								<i class="bi bi-bag"></i> Purchase
 							</a>
 						</li>
 						<li class="list-group-item border-0">
